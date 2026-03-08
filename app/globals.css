@@ -1,26 +1,398 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #0d0d0d;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #242424;
+  --color-border: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #c7c7c7;
+  --color-text-muted: #666666;
+  --color-accent: #b4f000;
+  --color-accent-dim: rgba(180, 240, 0, 0.12);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ─── Selection ────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #000;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Focus ─────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Typography ────────────────────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.875em;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ─── Utility Classes ───────────────────────────────────────────────────────── */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem;
+}
+
+.section-sm {
+  padding-block: 3rem;
+}
+
+/* ─── Fade In Animation ─────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* ─── Lime Accent Utilities ─────────────────────────────────────────────────── */
+.accent {
+  color: var(--color-accent);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+  color: #000;
+}
+
+/* ─── Border Utilities ──────────────────────────────────────────────────────── */
+.border-subtle {
+  border: 1px solid var(--color-border);
+}
+
+/* ─── Card ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.link-hover {
+  transition: color 0.2s ease;
+}
+
+.link-hover:hover {
+  color: #fff !important;
+}
+
+.link-hover-accent:hover {
+  color: var(--color-accent) !important;
+}
+
+/* ─── Tag ───────────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* ─── TipTap Editor Styles ──────────────────────────────────────────────────── */
+.tiptap-editor {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-height: 400px;
+  padding: 1.5rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  outline: none;
+}
+
+.tiptap-editor:focus {
+  border-color: var(--color-accent);
+}
+
+.tiptap-editor h1,
+.tiptap-editor h2,
+.tiptap-editor h3 {
+  color: var(--color-text-primary);
+  margin-block: 1rem 0.5rem;
+}
+
+.tiptap-editor p {
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.tiptap-editor ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  color: var(--color-text-primary);
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.tiptap-editor ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  color: var(--color-text-primary);
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.tiptap-editor li {
+  margin-bottom: 0.35rem;
+  padding-left: 0.25rem;
+}
+
+.tiptap-editor blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1rem;
+  color: var(--color-text-secondary);
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.tiptap-editor pre {
+  background: #111;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+
+.tiptap-editor pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e5e5e5;
+  font-size: 0.875rem;
+}
+
+.tiptap-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin-block: 0.75rem;
+}
+
+.tiptap-editor a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.tiptap-editor p.is-editor-empty:first-child::before {
+  color: var(--color-text-muted);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ─── Research Content Render ───────────────────────────────────────────────── */
+.research-content {
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+.research-content h1,
+.research-content h2,
+.research-content h3,
+.research-content h4 {
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.research-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.research-content ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  color: var(--color-text-secondary);
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.research-content ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  color: var(--color-text-secondary);
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.research-content li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.research-content blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  color: var(--color-text-muted);
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.research-content pre {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.research-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e5e5e5;
+  font-size: 0.875rem;
+}
+
+.research-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin-block: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.research-content a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.research-content strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
 }
