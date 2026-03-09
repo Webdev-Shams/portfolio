@@ -1,6 +1,8 @@
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 
+export const revalidate = 86400; // ISR: revalidate every 24h
+
 export const metadata = {
     title: "Contact",
     description: "Get in touch with Shams for projects or collaborations.",
