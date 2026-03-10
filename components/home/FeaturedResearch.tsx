@@ -33,7 +33,7 @@ export default async function FeaturedResearch() {
                 >
                     <h2
                         style={{
-                            fontSize: "0.75rem",
+                            fontSize: "0.85rem",
                             fontWeight: 600,
                             letterSpacing: "0.12em",
                             textTransform: "uppercase",
@@ -42,20 +42,19 @@ export default async function FeaturedResearch() {
                     >
                         Selected Research
                     </h2>
-                    <Link
-                        href="/research"
-                        className="link-hover-accent"
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.35rem",
-                            fontSize: "0.8125rem",
-                            fontWeight: 500,
-                            color: "var(--color-text-muted)",
-                        }}
+                    <div
+                        className=" dNoneDInlineBlock"
+                        style={{ paddingTop: "1rem", textAlign: "center" }}
                     >
-                        View all <ArrowRight size={13} />
-                    </Link>
+                        <Link href="/research" className="btn-outline border-white! hover:border-accent! rounded-none! font-[500]! text-center!"
+                            style={{
+                                fontSize: "0.8rem",
+                            }}
+                        >
+                            <span className="w-full">View all</span>
+                            <ArrowRight size={20} />
+                        </Link>
+                    </div>
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -106,7 +105,7 @@ export default async function FeaturedResearch() {
                                             display: "flex",
                                             alignItems: "center",
                                             gap: "0.35rem",
-                                            fontSize: "0.75rem",
+                                            fontSize: "0.85rem",
                                             color: "var(--color-text-muted)",
                                         }}
                                     >
@@ -129,6 +128,20 @@ export default async function FeaturedResearch() {
                             </article>
                         </Link>
                     ))}
+                </div>
+
+                <div
+                    className=" md:hidden"
+                    style={{ paddingTop: "1rem", textAlign: "center" }}
+                >
+                    <Link href="/portfolio" className="btn-outline border-white! hover:border-accent! rounded-none! font-[500]! text-center!"
+                        style={{
+                            fontSize: "0.8rem",
+                        }}
+                    >
+                        <span className="w-full">View all</span>
+                        <ArrowRight size={20} />
+                    </Link>
                 </div>
             </div>
         </section>

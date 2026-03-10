@@ -107,7 +107,7 @@ export default function PortfolioList({ projects }: { projects: any[] }) {
                                     <div style={{ padding: "1.5rem", flex: 1 }}>
                                         {project.categoryName && (
                                             <div style={{
-                                                fontSize: "0.75rem",
+                                                fontSize: "0.85rem",
                                                 fontWeight: 700,
                                                 color: "var(--color-accent)",
                                                 textTransform: "uppercase",

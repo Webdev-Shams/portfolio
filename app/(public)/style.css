@@ -1,0 +1,9 @@
+.dNoneDInlineBlock {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .dNoneDInlineBlock {
+        display: inline-block !important;
+    }
+}

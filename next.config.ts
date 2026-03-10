@@ -9,9 +9,7 @@ const nextConfig: NextConfig = {
             },
         ],
     },
-    experimental: {
-        serverComponentsExternalPackages: ["sharp"],
-    },
+    serverExternalPackages: ["sharp"],
     // ─── HTTP Cache Headers ────────────────────────────────────────────
     // Public pages get long-lived stale-while-revalidate headers so the
     // browser and CDN serve them instantly on repeat visits.

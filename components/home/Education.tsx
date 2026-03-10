@@ -19,7 +19,7 @@ export default async function Education() {
             <div className="container">
                 <h2
                     style={{
-                        fontSize: "0.75rem",
+                        fontSize: "0.85rem",
                         fontWeight: 600,
                         letterSpacing: "0.12em",
                         textTransform: "uppercase",
@@ -35,20 +35,8 @@ export default async function Education() {
                         display: "flex",
                         flexDirection: "column",
                         position: "relative",
-                        paddingLeft: "1.5rem",
                     }}
                 >
-                    {/* Timeline line */}
-                    <div
-                        style={{
-                            position: "absolute",
-                            left: 0,
-                            top: "8px",
-                            bottom: "8px",
-                            width: "1px",
-                            background: "var(--color-border)",
-                        }}
-                    />
 
                     {data.map((edu, idx) => (
                         <div
@@ -58,19 +46,6 @@ export default async function Education() {
                                 paddingBottom: idx < data.length - 1 ? "2rem" : 0,
                             }}
                         >
-                            {/* Dot */}
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    left: "-1.875rem",
-                                    top: "0.35rem",
-                                    width: "10px",
-                                    height: "10px",
-                                    borderRadius: "50%",
-                                    background: idx === 0 ? "var(--color-accent)" : "var(--color-border)",
-                                    border: "2px solid var(--color-bg)",
-                                }}
-                            />
 
                             <div
                                 style={{
@@ -103,19 +78,14 @@ export default async function Education() {
                                     >
                                         <GraduationCap size={14} />
                                         {edu.institution}
-                                        <span style={{ color: "var(--color-text-muted)" }}>·</span>
-                                        <span>{edu.major}</span>
                                     </div>
+                                    <p style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)" }}>{edu.major}
+                                        <span style={{ marginLeft: "0.5rem" }}>
+                                            ({edu.startYear} — {edu.endYear ?? "Present"})
+                                        </span>
+                                    </p>
                                 </div>
-                                <span
-                                    style={{
-                                        fontSize: "0.8125rem",
-                                        color: "var(--color-text-muted)",
-                                        whiteSpace: "nowrap",
-                                    }}
-                                >
-                                    {edu.startYear} — {edu.endYear ?? "Present"}
-                                </span>
+                                
                             </div>
                             {edu.description && (
                                 <p style={{ fontSize: "0.875rem", color: "var(--color-text-muted)", lineHeight: 1.6 }}>

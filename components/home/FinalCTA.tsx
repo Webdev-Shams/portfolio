@@ -5,7 +5,7 @@ export default function FinalCTA() {
     return (
         <section className="section" style={{ paddingTop: 0 }}>
             <div className="container">
-                <div className="flex flex-col md:flex-row items-center justify-between"
+                <div className="flex flex-col md:flex-row items-center justify-between centering"
                     style={{
                         background: "var(--color-bg-secondary)",
                         border: "1px solid var(--color-border)",
@@ -14,10 +14,28 @@ export default function FinalCTA() {
                         gap: "1.5rem",
                         position: "relative",
                         overflow: "hidden",
-                        justifyContent: "space-between",
                     }}
                 >
-                    <h2
+                    <style>
+                        {`
+                            .centering {
+                            justify-content: center;
+                            }
+
+                            .centeringH {
+                            text-align: center;
+                            }
+
+                            @media (min-width: 768px) {
+                            .centering {
+                                justify-content: space-between;
+                            }
+                            .centeringH {
+                                text-align: left;
+                            }
+                        `}
+                    </style>
+                    <h2 className="centeringH"
                         style={{
                             fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
                             fontWeight: 800,
@@ -30,10 +48,24 @@ export default function FinalCTA() {
                         <span style={{ color: "var(--color-accent)" }}> remarkable</span> together.
                     </h2>
 
+                    <style>
+                        {`
+                        .wRes{
+                            width: 100%;
+                            max-width: 240px;
+                            }
+
+                        @media (min-width: 768px) {
+                            .wRes{
+                                width: auto;
+                            }
+                        }
+                        `}
+                    </style>
 
                     {/* CTA button */}
-                    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                        <Link
+                    <div className="wRes" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                        <Link className="w-full md:w-[200px]"
                             href="/contact"
                             style={{
                                 display: "inline-flex",
@@ -47,6 +79,7 @@ export default function FinalCTA() {
                                 borderRadius: "6px",
                                 textDecoration: "none",
                                 transition: "opacity 0.2s ease",
+                                justifyContent: "center",
                             }}
                         >
                             <Mail size={16} />

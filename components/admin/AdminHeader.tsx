@@ -44,7 +44,7 @@ export default function AdminHeader() {
                     color: "var(--color-text-secondary)",
                     padding: "0.4rem 0.8rem",
                     borderRadius: "4px",
-                    fontSize: "0.75rem",
+                    fontSize: "0.85rem",
                     cursor: "pointer"
                 }}
             >

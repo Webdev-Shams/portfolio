@@ -90,7 +90,7 @@ export default function SkillCategories() {
                 .skill-category-card {
                     background: rgba(255, 255, 255, 0.02);
                     border: 1px solid var(--color-border);
-                    border-radius: var(--radius-lg);
+                    border-radius: 0px;
                     padding: 1.5rem;
                     display: flex;
                     flex-direction: column;

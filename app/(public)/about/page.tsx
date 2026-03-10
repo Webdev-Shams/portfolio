@@ -14,7 +14,6 @@ export default function AboutPage() {
         <div className="fade-in">
             <AboutHeader />
             <Background />
-            <Education />
             <Story />
         </div>
     );

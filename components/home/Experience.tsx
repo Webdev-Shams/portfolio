@@ -34,7 +34,7 @@ export default async function Experience() {
                                     {(isFirstCurrent || isFirstPast) && (
                                         <h2
                                             style={{
-                                                fontSize: "0.75rem",
+                                                fontSize: "0.85rem",
                                                 fontWeight: 600,
                                                 letterSpacing: "0.12em",
                                                 textTransform: "uppercase",
