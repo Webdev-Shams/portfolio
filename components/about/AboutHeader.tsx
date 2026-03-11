@@ -33,16 +33,14 @@ export default function AboutHeader() {
                                 lineHeight: 1.08,
                                 letterSpacing: "-0.04em",
                                 maxWidth: "800px",
+                                textAlign: "center",
 
                             }}
                         >
-                            <span className="md:hidden ">
-                                <span style={{ fontWeight: "800" }}>Full Stack <br /> <span style={{ color: "var(--color-accent)" }}>Next.js</span> <br /> Developer</span>
-                            </span>
-                            <span className="hidden sm:block">
-                                <span style={{ fontWeight: "800" }}>Full Stack <span style={{ color: "var(--color-accent)" }}>Next.js</span> Developer</span>
-                            </span>
+                            <span>
 
+                                <span style={{ fontWeight: "800" }}>About <span style={{ color: "var(--color-accent)" }}>Full Stack</span> Web Developer <span style={{ color: "var(--color-accent)" }}>Shams</span></span>
+                            </span>
                         </h1>
                     </motion.div>
                 </div>

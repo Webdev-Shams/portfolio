@@ -49,7 +49,7 @@ export default function ContactForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="card"
-            style={{ padding: "2rem", marginTop: "2rem", perspective: "1000px" }}
+            style={{ padding: "2rem", marginTop: "1.5rem", perspective: "1000px" }}
         >
             <form onSubmit={handleSubmit} className="contact-form">
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}>
