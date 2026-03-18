@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
             },
         ],
     },
-    serverExternalPackages: ["sharp"],
+    serverExternalPackages: ["sharp", "isomorphic-dompurify", "jsdom", "@exodus/bytes"],
     // ─── HTTP Cache Headers ────────────────────────────────────────────
     // Public pages get long-lived stale-while-revalidate headers so the
     // browser and CDN serve them instantly on repeat visits.
