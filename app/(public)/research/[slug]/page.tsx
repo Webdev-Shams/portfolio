@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
-import DOMPurify from "isomorphic-dompurify";
+import sanitizeHtml from "sanitize-html";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -36,7 +36,7 @@ export default async function ResearchSinglePage({ params }: Props) {
     if (!post) notFound();
 
     // Sanitize HTML content
-    const sanitizedContent = DOMPurify.sanitize(post.content);
+    const sanitizedContent = sanitizeHtml(post.content);
 
     return (
         <div className="container section fade-in" style={{ maxWidth: "800px" }}>
