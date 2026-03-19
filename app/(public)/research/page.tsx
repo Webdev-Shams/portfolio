@@ -1,7 +1,10 @@
 import { db } from "@/db";
-import { researchPosts } from "@/db/schema";
+import { researchPosts, type ResearchPost } from "@/db/schema";
+import { desc } from "drizzle-orm";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
+
+export const revalidate = 3600; // ISR: cache for 1 hour
 
 export const metadata = {
     title: "Research",
@@ -9,7 +12,7 @@ export const metadata = {
 };
 
 export default async function ResearchPage() {
-    const allPosts = await db.select().from(researchPosts).orderBy(researchPosts.createdAt);
+    const allPosts: ResearchPost[] = await db.select().from(researchPosts).orderBy(desc(researchPosts.createdAt));
 
     return (
         <div className="container section fade-in" style={{ maxWidth: "800px" }}>

@@ -4,6 +4,7 @@ import { education } from "@/db/schema";
 import { educationSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function GET(
     req: NextRequest,
@@ -43,6 +44,10 @@ export async function PATCH(
 
         await db.update(education).set(result.data).where(eq(education.id, id));
 
+        // Clear cache
+        revalidatePath("/", "page");
+        revalidatePath("/about", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Education update error:", error);
@@ -60,6 +65,11 @@ export async function DELETE(
     try {
         const { id } = await params;
         await db.delete(education).where(eq(education.id, id));
+
+        // Clear cache
+        revalidatePath("/", "page");
+        revalidatePath("/about", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Education delete error:", error);

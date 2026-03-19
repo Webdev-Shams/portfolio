@@ -4,6 +4,7 @@ import { researchPosts } from "@/db/schema";
 import { researchPostSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
 import { eq, and, ne } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function GET(
     req: NextRequest,
@@ -72,6 +73,11 @@ export async function PATCH(
             })
             .where(eq(researchPosts.id, id as any));
 
+        // Clear cache for relevant pages
+        revalidatePath("/research", "page");
+        revalidatePath(`/research/${slug}`, "page");
+        revalidatePath("/", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Research update error:", error);
@@ -91,6 +97,11 @@ export async function DELETE(
 
     try {
         await db.delete(researchPosts).where(eq(researchPosts.id, id as any));
+
+        // Clear cache for relevant pages
+        revalidatePath("/research", "page");
+        revalidatePath("/", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Research delete error:", error);

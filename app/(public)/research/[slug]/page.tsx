@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import sanitizeHtml from "sanitize-html";
 
+export const revalidate = 3600; // ISR: cache for 1 hour
+
 interface Props {
     params: Promise<{ slug: string }>;
 }

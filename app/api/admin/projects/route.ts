@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { projectSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: NextRequest) {
     const session = await getSessionFromRequest(req);
@@ -23,6 +24,8 @@ export async function POST(req: NextRequest) {
         if (existing) return NextResponse.json({ error: "Slug already exists" }, { status: 400 });
 
         await db.insert(projects).values(result.data);
+        revalidatePath("/portfolio", "page");
+        revalidatePath("/", "page");
 
         return NextResponse.json({ success: true });
     } catch (error) {

@@ -4,6 +4,7 @@ import { projects } from "@/db/schema";
 import { projectSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function GET(
     req: NextRequest,
@@ -48,6 +49,11 @@ export async function PATCH(
             .set(result.data)
             .where(eq(projects.id, id));
 
+        // Clear cache
+        revalidatePath("/portfolio", "page");
+        revalidatePath(`/portfolio/${result.data.slug}`, "page");
+        revalidatePath("/", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
@@ -65,6 +71,11 @@ export async function DELETE(
 
     try {
         await db.delete(projects).where(eq(projects.id, id));
+
+        // Clear cache
+        revalidatePath("/portfolio", "page");
+        revalidatePath("/", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });

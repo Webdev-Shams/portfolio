@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { researchPosts } from "@/db/schema";
 import { researchPostSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: NextRequest) {
     const session = await getSessionFromRequest(req);
@@ -38,9 +39,14 @@ export async function POST(req: NextRequest) {
             featured,
         });
 
+        // Clear cache for relevant pages
+        revalidatePath("/research", "page");
+        revalidatePath("/", "page");
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Research create error:", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }
+

@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { education } from "@/db/schema";
 import { educationSchema } from "@/lib/validations";
 import { getSessionFromRequest } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req: NextRequest) {
     const session = await getSessionFromRequest(req);
@@ -17,6 +18,10 @@ export async function POST(req: NextRequest) {
         }
 
         await db.insert(education).values(result.data);
+
+        // Clear cache
+        revalidatePath("/", "page");
+        revalidatePath("/about", "page");
 
         return NextResponse.json({ success: true });
     } catch (error) {
