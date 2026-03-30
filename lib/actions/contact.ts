@@ -5,6 +5,8 @@ import { contactMessages } from "@/db/schema";
 import { z } from "zod";
 import { headers } from "next/headers";
 
+import { eq } from "drizzle-orm";
+
 const contactSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
@@ -73,5 +75,15 @@ export async function sendContactMessage(formData: FormData) {
     } catch (error) {
         console.error("Database error:", error);
         return { success: false, error: "Failed to send message. Please try again later." };
+    }
+}
+
+export async function deleteContactMessage(id: string) {
+    try {
+        await db.delete(contactMessages).where(eq(contactMessages.id, id));
+        return { success: true, message: "Message deleted successfully" };
+    } catch (error) {
+        console.error("Failed to delete message:", error);
+        return { success: false, error: "Failed to delete message" };
     }
 }

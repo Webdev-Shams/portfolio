@@ -34,6 +34,7 @@ export default function AdminHeader() {
                 <a href="/admin/research" style={{ fontSize: "0.875rem", fontWeight: 500 }}>Research</a>
                 <a href="/admin/experience" style={{ fontSize: "0.875rem", fontWeight: 500 }}>Experience</a>
                 <a href="/admin/education" style={{ fontSize: "0.875rem", fontWeight: 500 }}>Education</a>
+                <a href="/admin/messages" style={{ fontSize: "0.875rem", fontWeight: 500 }}>Messages</a>
                 <a href="/" style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--color-accent)" }}>View Site</a>
             </nav>
             <button

@@ -1,20 +1,22 @@
 import { db } from "@/db";
-import { projects, researchPosts, experiences, education } from "@/db/schema";
-import { count } from "drizzle-orm";
+import { projects, researchPosts, experiences, education, contactMessages } from "@/db/schema";
+import { count, desc } from "drizzle-orm";
 import Link from "next/link";
-import { Briefcase, GraduationCap, Laptop, FileText, Plus } from "lucide-react";
+import { Briefcase, GraduationCap, Laptop, FileText, Plus, Bell } from "lucide-react";
 
 export default async function AdminDashboard() {
     const [projectCount] = await db.select({ value: count() }).from(projects);
     const [researchCount] = await db.select({ value: count() }).from(researchPosts);
     const [experienceCount] = await db.select({ value: count() }).from(experiences);
     const [educationCount] = await db.select({ value: count() }).from(education);
+    const [messageCount] = await db.select({ value: count() }).from(contactMessages);
 
     const stats = [
         { label: "Projects", count: projectCount.value, icon: Laptop, href: "/admin/projects" },
         { label: "Research", count: researchCount.value, icon: FileText, href: "/admin/research" },
         { label: "Experience", count: experienceCount.value, icon: Briefcase, href: "/admin/experience" },
         { label: "Education", count: educationCount.value, icon: GraduationCap, href: "/admin/education" },
+        { label: "Messages", count: messageCount.value, icon: Bell, href: "/admin/messages" },
     ];
 
     return (
@@ -28,9 +30,11 @@ export default async function AdminDashboard() {
                     <div key={stat.label} className="card" style={{ padding: "1.5rem" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
                             <stat.icon size={24} className="accent" />
-                            <Link href={`${stat.href}/new`}>
-                                <Plus size={20} style={{ color: "var(--color-text-muted)" }} />
-                            </Link>
+                            {stat.label !== "Messages" && (
+                                <Link href={`${stat.href}/new`}>
+                                    <Plus size={20} style={{ color: "var(--color-text-muted)" }} />
+                                </Link>
+                            )}
                         </div>
                         <div style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.25rem" }}>{stat.count}</div>
                         <div style={{ color: "var(--color-text-muted)", fontSize: "0.875rem", fontWeight: 500, letterSpacing: "0.05em", textTransform: "uppercase" }}>
