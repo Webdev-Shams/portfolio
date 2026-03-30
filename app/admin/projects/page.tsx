@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { projects, categories } from "@/db/schema";
 import Link from "next/link";
-import { Plus, ExternalLink, Trash2, Edit } from "lucide-react";
+import { Plus, ExternalLink, Trash2, Edit, Star } from "lucide-react";
 import { eq } from "drizzle-orm";
 
 export default async function AdminProjectsPage() {
@@ -12,11 +12,13 @@ export default async function AdminProjectsPage() {
             slug: projects.slug,
             techStack: projects.techStack,
             createdAt: projects.createdAt,
+            order: projects.order,
+            featured: projects.featured,
             categoryName: categories.name,
         })
         .from(projects)
         .leftJoin(categories, eq(projects.categoryId, categories.id))
-        .orderBy(projects.createdAt);
+        .orderBy(projects.order, projects.createdAt);
 
     return (
         <div className="fade-in">
@@ -33,6 +35,8 @@ export default async function AdminProjectsPage() {
                         <tr>
                             <th style={{ padding: '1rem' }}>Title</th>
                             <th style={{ padding: '1rem' }}>Category</th>
+                            <th style={{ padding: '1rem' }}>Order</th>
+                            <th style={{ padding: '1rem' }}>Featured</th>
                             <th style={{ padding: '1rem' }}>Tech Stack</th>
                             <th style={{ padding: '1rem' }}>Created</th>
                             <th style={{ padding: '1rem', textAlign: 'right' }}>Actions</th>
@@ -49,6 +53,16 @@ export default async function AdminProjectsPage() {
                                     <span className="tag" style={{ background: 'var(--color-bg-secondary)', color: 'var(--color-accent)' }}>
                                         {p.categoryName || "Uncategorized"}
                                     </span>
+                                </td>
+                                <td style={{ padding: '1rem' }}>
+                                    {p.order}
+                                </td>
+                                <td style={{ padding: '1rem' }}>
+                                    {p.featured ? (
+                                        <span style={{ color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                            <Star size={14} fill="var(--color-accent)" /> Featured
+                                        </span>
+                                    ) : "-"}
                                 </td>
                                 <td style={{ padding: '1rem' }}>
                                     <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>

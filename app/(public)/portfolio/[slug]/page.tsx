@@ -81,7 +81,7 @@ export default async function ProjectSinglePage({ params }: Props) {
                     src={project.primaryImage}
                     alt={project.title}
                     fill
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", objectPosition: "top" }}
                     priority
                 />
             </div>
@@ -92,11 +92,15 @@ export default async function ProjectSinglePage({ params }: Props) {
                     <div className="research-content" dangerouslySetInnerHTML={{ __html: project.description }} />
                 </section>
 
-                <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+                <section >
                     <div>
                         <h3 style={{ marginBottom: "0.75rem" }}>The Problem</h3>
                         <p style={{ color: "var(--color-text-secondary)" }}>{project.problem}</p>
                     </div>
+
+                </section>
+
+                <section>
                     <div>
                         <h3 style={{ marginBottom: "0.75rem" }}>The Solution</h3>
                         <p style={{ color: "var(--color-text-secondary)" }}>{project.solution}</p>

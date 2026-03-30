@@ -1,7 +1,7 @@
 "use client";
 
+// Client-side portfolio list with filtering and animation support
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -16,7 +16,7 @@ interface Project {
     categorySlug: string | null;
 }
 
-export default function PortfolioList({ projects }: { projects: any[] }) {
+export default function ProjectsListing({ projects }: { projects: any[] }) {
     const [filter, setFilter] = useState("all");
 
     const categories = ["all", ...Array.from(new Set(projects.map(p => p.categorySlug).filter(Boolean)))];
@@ -96,11 +96,15 @@ export default function PortfolioList({ projects }: { projects: any[] }) {
                                         }}
                                     >
                                         {project.primaryImage && (
-                                            <Image
+                                            <img
                                                 src={project.primaryImage}
                                                 alt={project.title}
-                                                fill
-                                                style={{ objectFit: "cover" }}
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                    objectPosition: "top",
+                                                }}
                                             />
                                         )}
                                     </div>

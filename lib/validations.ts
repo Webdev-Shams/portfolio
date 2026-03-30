@@ -46,6 +46,8 @@ export const projectSchema = z.object({
     liveUrl: z.string().url("Invalid URL").optional().nullable().or(z.literal("")),
     githubUrl: z.string().url("Invalid URL").optional().nullable().or(z.literal("")),
     categoryId: z.string().uuid().optional().nullable(),
+    order: z.number().int().default(0),
+    featured: z.boolean().default(false),
 });
 
 // ─── Research Post ────────────────────────────────────────────────────────────

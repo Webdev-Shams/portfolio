@@ -52,8 +52,11 @@ export default function ContactForm() {
             style={{ padding: "2rem", marginTop: "1.5rem", perspective: "1000px" }}
         >
             <form onSubmit={handleSubmit} className="contact-form">
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}>
-                    <div className="input-group">
+                <div
+                    className="flex flex-col md:flex-row"
+                    style={{ gap: "1.5rem", marginBottom: "1.5rem" }}
+                >
+                    <div className="input-group w-full">
                         <label htmlFor="name" className="label">
                             <User size={16} /> Name
                         </label>
@@ -66,7 +69,7 @@ export default function ContactForm() {
                             className="input"
                         />
                     </div>
-                    <div className="input-group">
+                    <div className="input-group w-full">
                         <label htmlFor="email" className="label">
                             <Mail size={16} /> Email
                         </label>
@@ -113,14 +116,14 @@ export default function ContactForm() {
                     <label className="label">Security Check</label>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                         <div className="captcha-box">
-                            {captcha.num1} + {captcha.num2} = ?
+                            {captcha.num1} + {captcha.num2}
                         </div>
                         <input
                             type="number"
                             value={captchaInput}
                             onChange={(e) => setCaptchaInput(e.target.value)}
                             required
-                            placeholder="Result"
+                            placeholder="= ?"
                             className="input"
                             style={{ width: "100px" }}
                         />

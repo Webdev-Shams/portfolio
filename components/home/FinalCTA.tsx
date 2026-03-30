@@ -45,7 +45,7 @@ export default function FinalCTA() {
                     >
                         Let&apos;s build something
 
-                        <span style={{ color: "var(--color-accent)" }}> remarkable</span> together.
+                        <span style={{ color: "var(--color-accent)" }}> remarkable</span> together
                     </h2>
 
                     <style>

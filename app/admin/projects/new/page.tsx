@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TiptapEditor from "@/components/admin/TiptapEditor";
 import { projectSchema } from "@/lib/validations";
-import { ArrowLeft, Save, Upload } from "lucide-react";
+import { ArrowLeft, Save, Trash2, Upload } from "lucide-react";
 import { Category } from "@/db/schema";
 
 export default function NewProjectPage() {
@@ -13,6 +13,7 @@ export default function NewProjectPage() {
     const [error, setError] = useState("");
     const [categories, setCategories] = useState<Category[]>([]);
 
+    const [imageMode, setImageMode] = useState<'upload' | 'url'>('upload');
     const [formData, setFormData] = useState({
         title: "",
         slug: "",
@@ -26,6 +27,8 @@ export default function NewProjectPage() {
         liveUrl: "",
         githubUrl: "",
         categoryId: "",
+        order: 0,
+        featured: false,
     });
 
     useEffect(() => {
@@ -53,7 +56,7 @@ export default function NewProjectPage() {
         setLoading(true);
 
         const techStackArray = formData.techStack.split(",").map(t => t.trim()).filter(Boolean);
-        const dataToValidate = { ...formData, techStack: techStackArray };
+        const dataToValidate = { ...formData, techStack: techStackArray, order: Number(formData.order) };
 
         const result = projectSchema.safeParse(dataToValidate);
         if (!result.success) {
@@ -143,13 +146,105 @@ export default function NewProjectPage() {
                     </div>
                     <div className="admin-field">
                         <label>Primary Image</label>
-                        <input type="file" onChange={handleImageUpload} style={{ display: 'block', marginBottom: '8px' }} />
-                        {formData.primaryImage && <img src={formData.primaryImage} style={{ width: '100%', borderRadius: '4px' }} />}
+                        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                            <button
+                                type="button"
+                                onClick={() => setImageMode('upload')}
+                                style={{
+                                    flex: 1,
+                                    padding: '6px',
+                                    borderRadius: '4px',
+                                    background: imageMode === 'upload' ? 'var(--color-accent)' : 'var(--color-bg-secondary)',
+                                    color: imageMode === 'upload' ? '#000' : '#fff',
+                                    border: '1px solid var(--color-border)',
+                                    fontSize: '12px',
+                                    fontWeight: 600,
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Upload
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setImageMode('url')}
+                                style={{
+                                    flex: 1,
+                                    padding: '6px',
+                                    borderRadius: '4px',
+                                    background: imageMode === 'url' ? 'var(--color-accent)' : 'var(--color-bg-secondary)',
+                                    color: imageMode === 'url' ? '#000' : '#fff',
+                                    border: '1px solid var(--color-border)',
+                                    fontSize: '12px',
+                                    fontWeight: 600,
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                URL
+                            </button>
+                        </div>
+
+                        {imageMode === 'upload' ? (
+                            <input type="file" onChange={handleImageUpload} style={{ display: 'block', marginBottom: '8px' }} />
+                        ) : (
+                            <input
+                                type="text"
+                                className="admin-input"
+                                placeholder="https://example.com/image.jpg"
+                                value={formData.primaryImage}
+                                onChange={e => setFormData(p => ({ ...p, primaryImage: e.target.value }))}
+                                style={{ marginBottom: '8px' }}
+                            />
+                        )}
+                        {formData.primaryImage && (
+                            <div style={{ position: 'relative', borderRadius: '4px', overflow: 'hidden' }}>
+                                <img src={formData.primaryImage} style={{ width: '100%', display: 'block' }} />
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData(p => ({ ...p, primaryImage: "" }))}
+                                    style={{
+                                        position: 'absolute',
+                                        top: '8px',
+                                        right: '8px',
+                                        background: 'rgba(0,0,0,0.5)',
+                                        color: '#fff',
+                                        border: 'none',
+                                        padding: '4px',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <Trash2 size={14} />
+                                </button>
+                            </div>
+                        )}
                     </div>
                     <div className="admin-field">
                         <label>URLs</label>
                         <input type="text" placeholder="Live Demo URL" className="admin-input" style={{ marginBottom: '8px' }} value={formData.liveUrl} onChange={e => setFormData(p => ({ ...p, liveUrl: e.target.value }))} />
                         <input type="text" placeholder="GitHub URL" className="admin-input" value={formData.githubUrl} onChange={e => setFormData(p => ({ ...p, githubUrl: e.target.value }))} />
+                    </div>
+                    <div className="admin-field">
+                        <label>Display Options</label>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <input
+                                type="checkbox"
+                                id="featured"
+                                checked={formData.featured}
+                                onChange={e => setFormData(p => ({ ...p, featured: e.target.checked }))}
+                                style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                            />
+                            <label htmlFor="featured" style={{ cursor: 'pointer', marginBottom: 0 }}>Featured Project</label>
+                        </div>
+                    </div>
+                    <div className="admin-field">
+                        <label>Sort Order</label>
+                        <input
+                            type="number"
+                            className="admin-input"
+                            value={formData.order}
+                            onChange={e => setFormData(p => ({ ...p, order: parseInt(e.target.value) || 0 }))}
+                        />
+                        <span style={{ fontSize: '11px', color: 'var(--color-text-muted)' }}>Lower numbers appear first.</span>
                     </div>
                     {error && <p style={{ color: "#ef4444", fontSize: "13px" }}>{error}</p>}
                 </div>

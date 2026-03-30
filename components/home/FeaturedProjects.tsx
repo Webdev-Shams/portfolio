@@ -18,8 +18,23 @@ export default async function FeaturedProjects() {
             categoryName: categories.name,
         }).from(projects)
             .leftJoin(categories, eq(projects.categoryId, categories.id))
-            .limit(3)
-            .orderBy(projects.createdAt);
+            .where(eq(projects.featured, true))
+            .orderBy(projects.order, projects.createdAt);
+
+        if (items.length === 0) {
+            items = await db.select({
+                id: projects.id,
+                title: projects.title,
+                slug: projects.slug,
+                summary: projects.summary,
+                primaryImage: projects.primaryImage,
+                techStack: projects.techStack,
+                categoryName: categories.name,
+            }).from(projects)
+                .leftJoin(categories, eq(projects.categoryId, categories.id))
+                .limit(3)
+                .orderBy(projects.createdAt);
+        }
     } catch {
         // DB not seeded
     }
@@ -147,7 +162,7 @@ export default async function FeaturedProjects() {
                                             alt={project.title}
                                             fill
                                             sizes="(max-width: 768px) 100vw, 33vw"
-                                            style={{ objectFit: "cover" }}
+                                            style={{ objectFit: "cover", objectPosition: "top" }}
                                         />
                                     ) : (
                                         <div

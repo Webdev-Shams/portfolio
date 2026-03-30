@@ -58,6 +58,8 @@ export const projects = pgTable("projects", {
     liveUrl: text("live_url"),
     githubUrl: text("github_url"),
     categoryId: uuid("category_id").references(() => categories.id),
+    order: integer("order").notNull().default(0),
+    featured: boolean("featured").notNull().default(false),
     createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
