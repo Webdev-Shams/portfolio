@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface Project {
     id: string;
@@ -96,15 +97,14 @@ export default function ProjectsListing({ projects }: { projects: any[] }) {
                                         }}
                                     >
                                         {project.primaryImage && (
-                                            <img
+                                            <Image
                                                 src={project.primaryImage}
                                                 alt={project.title}
-                                                style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    objectFit: "cover",
-                                                    objectPosition: "top",
-                                                }}
+                                                fill
+                                                quality={50}
+                                                sizes="(max-width: 768px) 100vw, 300px"
+                                                style={{ objectFit: "cover", objectPosition: "top" }}
+                                                priority
                                             />
                                         )}
                                     </div>
