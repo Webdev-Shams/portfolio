@@ -161,7 +161,8 @@ export default async function FeaturedProjects() {
                                             src={project.primaryImage}
                                             alt={project.title}
                                             fill
-                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            quality={50}
+                                            sizes="(max-width: 768px) 100vw, 50px"
                                             style={{ objectFit: "cover", objectPosition: "top" }}
                                         />
                                     ) : (

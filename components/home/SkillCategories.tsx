@@ -40,22 +40,14 @@ interface SkillCardProps {
 
 function SkillCategory({ title, skills, delay }: SkillCardProps) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay }}
+        <div
             className="skill-category-card"
         >
             <h3 className="category-label">{title}</h3>
             <div className="skills-grid">
                 {skills.map((skill, index) => (
-                    <motion.div
+                    <div
                         key={skill.name}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: delay + 0.1 + (index * 0.05) }}
                         className="skill-item"
                     >
                         <img
@@ -64,10 +56,10 @@ function SkillCategory({ title, skills, delay }: SkillCardProps) {
                             className="skill-icon"
                         />
                         <span className="skill-name">{skill.name}{index !== skills.length - 1 ? "," : ""}</span>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
-        </motion.div>
+        </div>
     );
 }
 

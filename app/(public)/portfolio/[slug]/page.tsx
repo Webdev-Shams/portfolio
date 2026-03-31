@@ -81,6 +81,8 @@ export default async function ProjectSinglePage({ params }: Props) {
                     src={project.primaryImage}
                     alt={project.title}
                     fill
+                    quality={50}
+                    sizes="(max-width: 768px) 100vw, 600px"
                     style={{ objectFit: "cover", objectPosition: "top" }}
                     priority
                 />
