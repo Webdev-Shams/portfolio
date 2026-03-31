@@ -27,20 +27,24 @@ export default async function AdminDashboard() {
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem", marginBottom: "3rem" }}>
                 {stats.map((stat) => (
-                    <div key={stat.label} className="card" style={{ padding: "1.5rem" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-                            <stat.icon size={24} className="accent" />
-                            {stat.label !== "Messages" && (
-                                <Link href={`${stat.href}/new`}>
-                                    <Plus size={20} style={{ color: "var(--color-text-muted)" }} />
-                                </Link>
-                            )}
+                    <Link href={`${stat.href}`}>
+                        <div key={stat.label} className="card" style={{ padding: "1.5rem" }}>
+
+                            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+                                <stat.icon size={24} className="accent" />
+                                {stat.label !== "Messages" && (
+                                    <Link href={`${stat.href}/new`}>
+                                        <Plus size={20} style={{ color: "var(--color-text-muted)" }} />
+                                    </Link>
+                                )}
+                            </div>
+
+                            <div style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.25rem" }}>{stat.count}</div>
+                            <div style={{ color: "var(--color-text-muted)", fontSize: "0.875rem", fontWeight: 500, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                                {stat.label}
+                            </div>
                         </div>
-                        <div style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.25rem" }}>{stat.count}</div>
-                        <div style={{ color: "var(--color-text-muted)", fontSize: "0.875rem", fontWeight: 500, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                            {stat.label}
-                        </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
 
