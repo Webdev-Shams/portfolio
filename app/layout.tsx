@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://shams.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Shams — Full-Stack Next.js Developer",
+    default: "Shams — Full-Stack Web Developer",
     template: "%s | Shams",
   },
   description:

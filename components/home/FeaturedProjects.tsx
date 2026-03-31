@@ -196,6 +196,10 @@ export default async function FeaturedProjects() {
                                             fontSize: "1rem",
                                             fontWeight: 700,
                                             marginBottom: "0.5rem",
+                                            display: "-webkit-box",
+                                            WebkitLineClamp: 1,
+                                            WebkitBoxOrient: "vertical",
+                                            overflow: "hidden",
                                         }}
                                     >
                                         {project.title}
@@ -207,16 +211,21 @@ export default async function FeaturedProjects() {
                                             lineHeight: 1.6,
                                             marginBottom: "1rem",
                                             display: "-webkit-box",
-                                            WebkitLineClamp: 3,
+                                            WebkitLineClamp: 2,
                                             WebkitBoxOrient: "vertical",
                                             overflow: "hidden",
                                         }}
                                     >
                                         {project.summary}
                                     </p>
-                                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+                                    <div style={{
+                                        WebkitLineClamp: 1,
+                                        WebkitBoxOrient: "vertical",
+                                        overflow: "hidden",
+                                        display: "-webkit-box",
+                                    }}>
                                         {(project.techStack as string[]).slice(0, 4).map((t) => (
-                                            <span key={t} className="tag" style={{ fontSize: "0.7rem" }}>
+                                            <span key={t} className="tag" style={{ fontSize: "0.7rem", marginRight: "0.5rem" }}>
                                                 {t}
                                             </span>
                                         ))}

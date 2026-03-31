@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "About | Shams Portfolio",
-    description: "Learn about Shams, a full-stack Next.js developer with a marketing background focused on high-performance digital products and scalable architecture.",
+    description: "Learn about Shams, a full-stack web developer with a marketing background focused on high-performance digital products and scalable architecture.",
 };
 
 export default function AboutPage() {

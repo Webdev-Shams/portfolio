@@ -30,10 +30,10 @@ export default function HeroSection() {
                             }}
                         >
                             <span className="md:hidden">
-                                <span style={{ fontWeight: "800" }}>Full Stack <br /> <span style={{ color: "var(--color-accent)" }}>Next.js</span> <br /> Developer</span>
+                                <span style={{ fontWeight: "800" }}>Full Stack <br /> <span style={{ color: "var(--color-accent)" }}>Web</span> <br /> Developer</span>
                             </span>
                             <span className="hidden sm:block">
-                                <span style={{ fontWeight: "800" }}>Full Stack <span style={{ color: "var(--color-accent)" }}>Next.js</span> Developer</span>
+                                <span style={{ fontWeight: "800" }}>Full Stack <span style={{ color: "var(--color-accent)" }}>Web</span> Developer</span>
                             </span>
 
                         </h1>
@@ -47,7 +47,7 @@ export default function HeroSection() {
                                 marginBottom: "1rem",
                             }}
                         >
-                            <strong className="text-white!">2+ years</strong> building <strong className="text-white!">full-stack</strong> SaaS applications with <strong className="text-white!">Next.js</strong>, focused on scalable architecture, performance, and clean system design. As a  <strong className="text-white!">Marketing</strong> graduate, I bring product thinking and user-focused strategy into every build.
+                            <strong className="text-white!">2+ years</strong> building <strong className="text-white!">full-stack</strong> SaaS applications with <strong className="text-white!">Next.js</strong> and other modern technologies, focused on scalable architecture, performance, and clean system design. As a  <strong className="text-white!">Marketing</strong> graduate, I bring product thinking and user-focused strategy into every build.
                         </p>
 
                         <div className="flex flex-row flex-wrap gap-2 md:gap-6 pt-2!"
