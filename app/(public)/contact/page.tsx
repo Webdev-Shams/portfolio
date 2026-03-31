@@ -23,7 +23,7 @@ export default function ContactPage() {
                     flexWrap: "wrap",
                 }}>
                     <a
-                        href="mailto:hello@shams.dev"
+                        href="mailto:webdev.shams@gmail.com"
                         className="card"
                         style={{ padding: "1.5rem", display: "flex", alignItems: "center", gap: "1rem", textDecoration: "none", flex: "1" }}
                     >
@@ -32,7 +32,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 style={{ fontSize: "0.9375rem", marginBottom: "0.125rem" }}>Email</h3>
-                            <p style={{ fontSize: "0.875rem" }}>hello@shams.dev</p>
+                            <p style={{ fontSize: "0.875rem" }}>webdev.shams@gmail.com</p>
                         </div>
                     </a>
 

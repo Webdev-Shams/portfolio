@@ -6,7 +6,7 @@ export default function PersonalDetails() {
     const details = [
         { label: "Full Name", value: "Shams", icon: <Calendar size={18} /> },
         { label: "Location", value: "Dhaka, BD", icon: <MapPin size={18} /> },
-        { label: "Email", value: "hello@shams.dev", icon: <Mail size={18} />, link: "mailto:hello@shams.dev" },
+        { label: "Email", value: "webdev.shams@gmail.com", icon: <Mail size={18} />, link: "mailto:webdev.shams@gmail.com" },
         { label: "Current Focus", value: "Next.js / Full-stack Development", icon: <GraduationCap size={18} /> },
     ];
 
