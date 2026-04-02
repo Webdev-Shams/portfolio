@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 
 const FRONTEND_SKILLS = [
     { name: "React", icon: "react" },
@@ -29,6 +28,33 @@ const SECURITY_SKILLS = [
     { name: "Session", icon: "auth0" },
     { name: "JWT", icon: "jsonwebtokens", color: "ffffff" },
 ];
+
+const DESIGN_SKILLS = [
+    { name: "Figma", icon: "figma" },
+    { name: "Adobe Photoshop", icon: "eclipseadoptium", color: "31A8FF" },
+    { name: "Adobe Illustrator", icon: "eclipseadoptium", color: "FF9A00" },
+    { name: "Filmora", icon: "wondersharefilmora" },
+    { name: "CapCut", icon: "tiktok" },
+];
+
+const MARKETING_SKILLS = [
+    { name: "Google Trends", icon: "google" },
+    { name: "Google Ads", icon: "googleads" },
+    { name: "Google Search Console", icon: "googlesearchconsole" },
+    { name: "Go High Level", icon: "circle" },
+    { name: "Zapier", icon: "zapier" },
+    { name: "ActiveCampaign", icon: "mailchimp" },
+    { name: "Buffer", icon: "buffer", color: "D24726" },
+];
+
+const OFFICE_SKILLS = [
+    { name: "MS Word", icon: "circle", color: "2B579A" },
+    { name: "MS PowerPoint", icon: "circle", color: "D24726" },
+    { name: "MS Excel", icon: "circle", color: "217346" },
+];
+
+
+
 
 
 
@@ -71,6 +97,9 @@ export default function SkillCategories() {
                     <SkillCategory title="Frontend Development" skills={FRONTEND_SKILLS} delay={0.1} />
                     <SkillCategory title="Backend & Infrastructure" skills={BACKEND_SKILLS} delay={0.2} />
                     <SkillCategory title="Security & Authentication" skills={SECURITY_SKILLS} delay={0.3} />
+                    <SkillCategory title="Design & UI/UX" skills={DESIGN_SKILLS} delay={0.4} />
+                    <SkillCategory title="Marketing & Automation" skills={MARKETING_SKILLS} delay={0.5} />
+                    <SkillCategory title="Office Tools" skills={OFFICE_SKILLS} delay={0.6} />
                 </div>
             </div>
 

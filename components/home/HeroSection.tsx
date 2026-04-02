@@ -40,7 +40,7 @@ export default function HeroSection() {
 
                         <p
                             style={{
-                                fontSize: "clamp(1rem, 2vw, 1rem)",
+                                fontSize: "clamp(0.9rem, 2vw, 0.9rem)",
                                 fontWeight: 400,
                                 color: "var(--color-text-secondary)",
                                 lineHeight: 1.7,
@@ -64,7 +64,7 @@ export default function HeroSection() {
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-1 sm:gap-2 py-1 border-b border-border/40 group">
                                     <item.icon size={15} className="text-accent" strokeWidth={1.5} />
-                                    <span className="text-sm text-text-secondary font-bold flex items-center gap-2 tracking-wide">
+                                    <span className="text-sm text-text-secondary flex items-center gap-2 tracking-wide">
                                         {item.value}
                                         {item.flag && <BD className="w-4 h-auto rounded-[1px] opacity-80" title="Bangladesh" />}
                                     </span>
